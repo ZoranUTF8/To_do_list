@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
+
+<div class="box">
+  <!-- displays all items from database -->
+  <% newListItems.forEach(function(item){ %>
+
+  <!-- form for deleting items -->
+  <form action="/delete" method="POST">
+    <div class="item">
+      <input type="checkbox" name="checkboxDelete" value="<%=item._id%>" onchange="this.form.submit()">
+      <p> <%= item.name %> </p>
+    </div>
+    <!-- hidden used  to get the name of the list -->
+    <input type="hidden" name="deleteItemListName" value="<%= listTitle %>"></input>
+  </form>
+  <% }) %>
+
+
+  <!-- form for adding new items -->
+  <form class="item" action="/" method="POST">
+    <input name="newItem" type="text" placeholder="New item" autocomplete="off" autofocus required>
+    <button type="submit" name="postButton" value="<%= listTitle %>">+</button>
+  </form>
+
+</div>
+
+<%- include("partials/footer") -%>
