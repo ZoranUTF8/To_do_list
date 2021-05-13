@@ -1,7 +1,9 @@
+
+body {
+  background-color: none;
+}
 html {
-  background-color: #E4E9FD;
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
-  min-height: 1000px;
+  background-color:#A683E3;
   font-family: 'helvetica neue';
 }
 
@@ -13,14 +15,18 @@ h1 {
 .box {
   max-width: 400px;
   margin: 50px auto;
-  background: white;
+  background: #E4E9FD;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+
 }
 
 #heading {
-  background-color: #A683E3;
+  background-color: #E4E9FD;
   text-align: center;
+}
+.h1Heading {
+  color: #A683E3;
 }
 
 .item {
@@ -48,7 +54,7 @@ p {
   padding: 20px;
   font-size: 20px;
   font-weight: 200;
-  color: #00204a;
+  color: #A683E3;
 }
 /* only for form with class item */
 form.item {
@@ -85,7 +91,7 @@ input[type="text"]:focus {
 }
 
 ::placeholder {
-  color: grey;
+  color: #A683E3;
   opacity: 1;
 }
 
@@ -93,4 +99,9 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   /* Height of the footer */
+
 }

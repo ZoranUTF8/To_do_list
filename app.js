@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+
+
 //---------------------------------
 // DD MONGODB
 //Connection url
@@ -79,7 +81,8 @@ app.get("/", function(req, res) {
       res.redirect("/");
     } else {
       res.render("list", {
-        listTitle: "Today",
+        listTitle: "Main list",
+        currentDate: getCurrentDate(),
         newListItems: foundItems
       });
     }
@@ -98,7 +101,7 @@ app.post("/", function(req, res) {
     name: itemName
   });
 
-  if (listName === "Today") {
+  if (listName === "Main list") {
     itemToSave.save();
     res.redirect("/");
   } else {
@@ -117,11 +120,12 @@ app.post("/", function(req, res) {
 
 
 });
+//DELETING ITEMS
 app.post("/delete", function(req, res) {
   const checkedItem_id = req.body.checkboxDelete;
   const listName = req.body.deleteItemListName;
 
-  if (listName === "Today") {
+  if (listName === "Main list") {
     Item.findByIdAndRemove(checkedItem_id, function(err) {
       if (err) {
         console.log("ERROR: " + err);
@@ -172,6 +176,7 @@ app.get("/:customListName", function(req, res) {
         } else {
           res.render("list", {
             listTitle: customListName,
+            currentDate: getCurrentDate(),
             newListItems: result.items
           });
         }
@@ -216,4 +221,17 @@ function getAllPosts() {
       });
     };
   });
+};
+
+function getCurrentDate() {
+
+  let options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+  let d = new Date();
+  let n = d.toLocaleString("en-US", options);
+  return n;
 }
